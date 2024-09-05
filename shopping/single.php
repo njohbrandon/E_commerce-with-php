@@ -3,6 +3,35 @@
 
 <?php 
 
+
+      if(isset($_POST['submit'])) {
+
+        $pro_id = $_POST['pro_id'];
+        $pro_name = $_POST['pro_name'];
+        $pro_image = $_POST['pro_image'];
+        $pro_price = $_POST['pro_price'];
+        $pro_amount = $_POST['pro_amount'];
+        $pro_file = $_POST['pro_file'];
+        $user_id = $_POST['user_id'];
+
+        $insert = $conn->prepare("INSERT INTO cart (pro_id, pro_name, pro_image,
+         pro_price, pro_amount, pro_file, user_id)  
+        values(:pro_id, :pro_name, :pro_image, :pro_price, :pro_amount, :pro_file, :user_id)");
+
+        $insert->execute([
+            ':pro_id' => $pro_id,
+            ':pro_name' => $pro_name,
+            ':pro_image' => $pro_image,
+            ':pro_price' => $pro_price,
+            ':pro_amount' => $pro_amount,
+            ':pro_file' => $pro_file,
+            ':user_id' => $user_id,
+        ]);
+
+
+
+      }
+
       if(isset($_GET['id'])) {
          
         $id = $_GET['id'];
@@ -78,7 +107,18 @@
     $(document).ready(function(){
         
         $(document).on("submit", function(e) {
-            alert('clicked');
+            e.preventDefault();
+           var formdata = $("#form-data").serialize()+'&submit';
+
+           $.ajax({
+              type: "post",
+              url: "single.php?id=<?php echo $id; ?>",
+              data: formdata,
+
+              success: function() {
+                alert("added to cart successfully");
+              }
+           })
         })
     });
 </script>
