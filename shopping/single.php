@@ -62,7 +62,10 @@
                                     <div class="">
                                        <input type="text" name="user_id"  value="<?php echo $_SESSION['user_id']; ?>" class="form-control">
                                     </div> 
-                                <div class="cart mt-4 align-items-center"> <button name="submit" type="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> </div>
+                                   <div class="cart mt-4 align-items-center">
+                                      <button name="submit" type="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> 
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -70,3 +73,12 @@
             </div>
         </div>
 <?php require "../includes/footer.php"; ?>
+
+<script>
+    $(document).ready(function(){
+        
+        $(document).on("submit", function(e) {
+            alert('clicked');
+        })
+    });
+</script>
