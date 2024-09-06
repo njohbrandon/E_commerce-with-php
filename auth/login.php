@@ -26,6 +26,7 @@
             
              $_SESSION['username'] = $fetch['username'];
              $_SESSION['user_id'] = $fetch['id'];
+             
              header("location: ".APPURL."");
 
           } else {
